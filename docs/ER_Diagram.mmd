@@ -1,0 +1,57 @@
+erDiagram
+    CUSTOMERS ||--o{ ACCOUNTS : owns
+    ACCOUNTS ||--o{ TRANSACTIONS : records
+    ACCOUNTS ||--o{ FRAUD_ALERTS : receives
+    TRANSACTIONS ||--o| FRAUD_ALERTS : may_trigger
+    ACCOUNTS o|--o{ TRANSACTIONS : counterparty_for
+
+    CUSTOMERS {
+        int id PK
+        string full_name
+        string email UK
+        string phone
+        string risk_tier
+        datetime created_at
+    }
+    ACCOUNTS {
+        string id PK
+        int customer_id FK
+        string account_type
+        decimal balance
+        string currency
+        string status
+        string country
+    }
+    TRANSACTIONS {
+        int id PK
+        string external_ref UK
+        string account_id FK
+        string counterparty_account_id FK
+        string merchant
+        string category
+        decimal amount
+        string transaction_type
+        string status
+        int risk_score
+        datetime created_at
+    }
+    FRAUD_ALERTS {
+        int id PK
+        int transaction_id FK_UK
+        string account_id FK
+        string severity
+        int score
+        string rule_name
+        string reason
+        string status
+        datetime created_at
+    }
+    AUDIT_LOGS {
+        int id PK
+        string actor
+        string action
+        string entity_type
+        string entity_id
+        string details
+        datetime created_at
+    }
