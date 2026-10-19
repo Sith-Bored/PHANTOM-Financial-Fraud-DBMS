@@ -1,5 +1,7 @@
 # PHANTOM — DBMS Viva Preparation
 
+This sheet is tailored to the included implementation. Use your own words in the viva and be ready to point to the actual table, view, trigger, endpoint, or workflow being discussed.
+
 ## 45-second project explanation
 
 PHANTOM is a local financial fraud intelligence application built to demonstrate DBMS concepts in a working system. The frontend is made with HTML, CSS, and JavaScript; Python's standard-library HTTP server exposes the API; SQLite stores customers, accounts, transactions, fraud alerts, and audit logs. The dashboard uses real SQL aggregation, analysts can add customers/accounts and transactions through validated UI forms, the scan endpoint applies explainable rules to those transaction records, and alert actions update the database and append audit events. The simulated transfer demonstrates atomicity by debiting and crediting two accounts in a single database transaction with rollback on failure. All data is fictional and no real bank system is connected.
@@ -11,9 +13,9 @@ PHANTOM is a local financial fraud intelligence application built to demonstrate
 - **Views:** `v_account_summary`, `v_open_alerts`.
 - **Triggers:** `trg_transaction_audit`, `trg_alert_audit`, `trg_prevent_negative_balance`.
 - **Main relationships:** customer 1-to-many accounts; account 1-to-many transactions; transaction 1-to-zero-or-one alert; account 1-to-many alerts.
-- **Seed data:** 18 fictional customers, 24 accounts, 94 transactions, and 15 seeded alerts (counts change as you use the application).
+- **Demo data:** 18 customers, 24 accounts, 94 transactions, 15 seeded alerts (counts can change after using the app).
 - **Transfer safety:** `BEGIN IMMEDIATE`, conditional debit, destination credit, transaction insert, audit insert, commit; rollback on any exception.
-- **User-entered data:** the Accounts view creates a customer and linked account atomically; the Transactions view adds a transaction with metadata; both use server-side validation and persist to SQLite.
+- **User-entered data:** the Accounts view can create a customer and linked account atomically; the Transactions view can add a transaction with metadata; both use server-side validation and are persisted to SQLite.
 - **Rule thresholds:** high value ≥ ₹100,000 (+65); otherwise large ticket ≥ ₹50,000 (+42); cross-border ≥ ₹10,000 (+35); velocity ≥ 4 clustered transactions (+25); ATM ≥ ₹25,000 (+20). Alerts begin at score 55.
 - **No third-party packages:** Python standard library only.
 
