@@ -25,7 +25,7 @@ No third-party Python package installation or separate database server is requir
 - `app.py` — Python HTTP API and application logic
 - `web/` — frontend HTML, CSS, and JavaScript
 - `database/` — schema and seed SQL
-- `data/phantom.db` — seeded SQLite demo database
+- `database/seed.sql` — fictional starter dataset; the SQLite database is created on first launch if it is missing
 - `tests/` — smoke tests
 - `docs/` — report, ER diagram, demo guide, and viva prep
 
