@@ -241,8 +241,7 @@ class PhantomHandler(BaseHTTPRequestHandler):
 
     def log_message(self, fmt, *args):
         # concise server console log
-        sys.stdout.write("[%s] %s
-" % (self.log_date_time_string(), fmt % args))
+        sys.stdout.write("[%s] %s\n" % (self.log_date_time_string(), fmt % args))
 
     def send_json(self, payload, status=200):
         data = json.dumps(payload, ensure_ascii=False, default=str).encode("utf-8")
@@ -311,8 +310,7 @@ class PhantomHandler(BaseHTTPRequestHandler):
                         writer = csv.DictWriter(output, fieldnames=list(items[0].keys()))
                         writer.writeheader(); writer.writerows(items)
                     else:
-                        output.write("id,external_ref,merchant,amount,currency,status,risk_score
-")
+                        output.write("id,external_ref,merchant,amount,currency,status,risk_score\n")
                     blob = output.getvalue().encode("utf-8-sig")
                     self.send_response(200)
                     self.send_header("Content-Type", "text/csv; charset=utf-8")
